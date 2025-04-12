@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+
+    <title>Frontend Mentor | Intro component with sign up form</title>
+  </head>
+  <body>
+    <main>
+      <div>
+        <section>
+          <h1>Learn to code by watching others</h1>
+          <p>
+            See how experienced developers solve problems in real-time. Watching
+            scripted tutorials is great, but understanding how developers think
+            is invaluable.
+          </p>
+        </section>
+
+        <section>
+          <button>
+            <span>Try it free 7 days</span>
+            <span
+              >then <span class="sr-only">20 dollars per month</span>
+              <span aria-hidden="true">$20/mo.</span> thereafter</span
+            >
+          </button>
+
+          <form action="#">
+            <div>
+              <div>
+                <label for="firstName" class="sr-only">First Name</label>
+                <input
+                  type="text"
+                  name="firstName"
+                  id="firstName"
+                  required
+                  autocomplete="name"
+                  placeholder="First Name"
+                />
+                <img src="./images/icon-error.svg" alt="" />
+              </div>
+              <p aria-live="polite">First name cannot be empty</p>
+            </div>
+
+            <div>
+              <div>
+                <label for="lastName" class="sr-only">last Name</label>
+                <input
+                  type="text"
+                  name="lastName"
+                  id="lastName"
+                  required
+                  autocomplete="name"
+                  placeholder="Last Name"
+                />
+                <img src="./images/icon-error.svg" alt="" />
+              </div>
+              <p aria-live="polite">Last name cannot be empty</p>
+            </div>
+
+            <div>
+              <div>
+                <label for="email" class="sr-only">Email Address</label>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  required
+                  autocomplete="name"
+                  placeholder="Email Address"
+                />
+                <img src="./images/icon-error.svg" alt="" />
+              </div>
+              <p aria-live="polite">Looks like this is not an email</p>
+            </div>
+
+            <div>
+              <div>
+                <label for="firstName" class="sr-only">Password</label>
+                <input
+                  type="password"
+                  name="Password"
+                  id="Password"
+                  required
+                  autocomplete="off"
+                  placeholder="Password"
+                />
+                <img src="./images/icon-error.svg" alt="" />
+              </div>
+              <p aria-live="polite">Password cannot be empty</p>
+            </div>
+
+            <button type="submit">Claim your free trial</button>
+          </form>
+
+          <p>
+            By clicking the button, you are agreeing to our
+            <a href="#">Terms and Services</a>
+          </p>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <p class="attribution">
+        Challenge by
+        <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+          >Frontend Mentor</a
+        >. Coded by
+        <a href="https://www.github.com/repro123" target="_blank"
+          >Bello Ibrahim</a
+        >.
+      </p>
+    </footer>
+  </body>
+</html>
