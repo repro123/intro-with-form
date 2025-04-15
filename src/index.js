@@ -27,7 +27,7 @@ function validateInput() {
   const firstName = firstNameInput.value.trim();
   const lastName = lastNameInput.value.trim();
   const email = emailInput.value.trim();
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const password = passwordInput.value.trim();
 
   //   default data invalid to be false
@@ -73,54 +73,28 @@ function validateInput() {
     isValid = false;
     dataInvalid(passwordInput, String(!isValid));
     errorText(passwordErrorParagraph, "Password cannot be empty");
-  }
+  } else {
+    // Clear previous errors
+    errorText(passwordErrorParagraph, "");
 
-  // minimum length of 8
-  if (password.length < 8) {
-    isValid = false;
-    dataInvalid(passwordInput, String(!isValid));
-    errorText(
-      passwordErrorParagraph,
-      "Password should be at least 8 characters."
-    );
-  }
+    // Check all password rules
+    let passwordErrors = [];
+    if (password.length < 8) passwordErrors.push("at least 8 characters");
+    if (!/[A-Z]/.test(password)) passwordErrors.push("one uppercase letter");
+    if (!/[a-z]/.test(password)) passwordErrors.push("one lowercase letter");
+    if (!/[0-9]/.test(password)) passwordErrors.push("one number");
+    if (!/[!@#$%^&*]/.test(password))
+      passwordErrors.push("one special character");
+    if (/\s/.test(password)) passwordErrors.push("no spaces");
 
-  // Uppercase letter
-  if (!/[A-Z]/.test(password)) {
-    isValid = false;
-    dataInvalid(passwordInput, String(!isValid));
-    errorText(passwordErrorParagraph, "Include at least one uppercase letter.");
-  }
-
-  // Lowercase letter
-  if (!/[a-z]/.test(password)) {
-    isValid = false;
-    dataInvalid(passwordInput, String(!isValid));
-    errorText(passwordErrorParagraph, "Include at least one lowercase letter.");
-  }
-
-  // Number
-  if (!/[0-9]/.test(password)) {
-    isValid = false;
-    dataInvalid(passwordInput, String(!isValid));
-    errorText(passwordErrorParagraph, "Include at least one number.");
-  }
-
-  // Special character
-  if (!/[!@#$%^&*]/.test(password)) {
-    isValid = false;
-    dataInvalid(passwordInput, String(!isValid));
-    errorText(
-      passwordErrorParagraph,
-      "Include at least one special character (!@#$%^&*)."
-    );
-  }
-
-  // No whitespace
-  if (/\s/.test(password)) {
-    isValid = false;
-    dataInvalid(passwordInput, String(!isValid));
-    errorText(passwordErrorParagraph, "Password cannot contain spaces.");
+    if (passwordErrors.length > 0) {
+      isValid = false;
+      dataInvalid(passwordInput, "true");
+      errorText(
+        passwordErrorParagraph,
+        `Password needs: ${passwordErrors.join(", ")}.`
+      );
+    }
   }
 
   return isValid;
@@ -130,4 +104,6 @@ function validateInput() {
 form.addEventListener("submit", function (e) {
   e.preventDefault();
   if (!validateInput()) return;
+
+  form.reset();
 });
